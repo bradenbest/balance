@@ -1,6 +1,6 @@
 #ifdef DATA_H
 #  define MAXFS 10000
-#  define FILENAME "/home/braden/.balance_data"
+#  define FILENAME ".balance_data"
 #endif
 
 #ifdef INTERFACE_H
