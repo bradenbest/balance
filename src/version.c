@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+#include "version.h"
+
+static const int MAJOR = 1;
+static const int MINOR = 6;
+static const int PATCH = 1;
+
+void print_version(version *v){
+  printf("Version ");
+  if(v->patch){
+    printf("%i.%02i.%i\n", v->major, v->minor, v->patch);
+  }else{
+    printf("%i.%02i\n", v->major, v->minor);
+  }
+}
+
+void set_version(version *v){
+  v->major = MAJOR;
+  v->minor = MINOR;
+  v->patch = PATCH;
+}
