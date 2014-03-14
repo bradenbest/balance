@@ -8,6 +8,9 @@
 
 #include "interface.h"
 
+#define ENV_PROMPT(X) printf("Enter New Value for " X "\n" YELLOW "--> " DEFAULT); if(scanf(" %d", &new_val) == -1)    break // Enter New Value Prompt
+#define EAV_PROMPT(X) printf("Enter Value to Add to " X "\n" YELLOW "--> " DEFAULT); if(scanf(" %d", &new_val) == -1)    break // Enter Add Value Prompt
+
 static void render(data *d){
   // Dollar
   int db = d->dollar_bank;
@@ -97,12 +100,9 @@ Paycheck{\n\
 
 }
 
-static void edit_var(data *d){
-  int choice = 0;
-  int new_val = 0;
-  //list vars w/ values, then choose
+static void list_vars(data *d){
   printf("\
-Choose a Var to edit:\n\
+Choose a variable to edit:\n\
   Dollar{\n\
     <" YELLOW "1" DEFAULT "> Bank:\t\t%i\n\
     <" YELLOW "2" DEFAULT "> Bank (extra):\t%i\n\
@@ -124,11 +124,71 @@ Choose a Var to edit:\n\
       <" YELLOW "11" DEFAULT "> Minutes:\t%i\n\
     }\n\
   }\n",d->dollar_bank,d->dollar_bank_extra,d->dollar_wallet, d->coin_q, d->coin_d, d->coin_n, d->coin_p, d->wage_next_hours, d->wage_next_minutes, d->wage_current_hours, d->wage_current_minutes);
+}
 
+static void add_to_var(data *d){
+  int choice = 0;
+  int new_val = 0;
+  //list vars w/ values, then choose
+  list_vars(d);
   printf(YELLOW "--> " DEFAULT);
   if (scanf(" %d", &choice) == -1)  return;
 
-  #define ENV_PROMPT(X) printf("Enter New Value for " X "\n" YELLOW "--> " DEFAULT); if(scanf(" %d", &new_val) == -1)    break
+  switch(choice){
+    case 1: // Dollar Bank
+      EAV_PROMPT("Dollar->Bank");
+      d->dollar_bank += new_val;
+      break;
+    case 2: // Dollar Bank Extra
+      EAV_PROMPT("Dollar->Bank (extra)");
+      d->dollar_bank_extra += new_val;
+      break;
+    case 3: // Dollar Wallet
+      EAV_PROMPT("Dollar->Wallet");
+      d->dollar_wallet += new_val;
+      break;
+    case 4: // Coin Quaters
+      EAV_PROMPT("Coin->Quarters");
+      d->coin_q += new_val;
+      break;
+    case 5: // Coin Dimes
+      EAV_PROMPT("Coin->Dimes");
+      d->coin_d += new_val;
+      break;
+    case 6: // Coin Nickels
+      EAV_PROMPT("Coin->Nickels");
+      d->coin_n += new_val;
+      break;
+    case 7: // Coin Pennies
+      EAV_PROMPT("Coin->Pennies");
+      d->coin_p += new_val;
+      break;
+    case 8: // Wage Next Hours
+      EAV_PROMPT("Wage->Next->Hours");
+      d->wage_next_hours += new_val;
+      break;
+    case 9: // Wage Next Minutes
+      EAV_PROMPT("Wage->Next->Minutes");
+      d->wage_next_minutes += new_val;
+      break;
+    case 10: // Wage Currect Hours
+      EAV_PROMPT("Wage->Current->Hours");
+      d->wage_current_hours += new_val;
+      break;
+    case 11: // Wage Current Minutes
+      EAV_PROMPT("Wage->Current->Minutes");
+      d->wage_current_minutes += new_val;
+      break;
+  }
+}
+
+static void edit_var(data *d){
+  int choice = 0;
+  int new_val = 0;
+  //list vars w/ values, then choose
+  list_vars(d);
+  printf(YELLOW "--> " DEFAULT);
+  if (scanf(" %d", &choice) == -1)  return;
 
   switch(choice){
     case 1: // Dollar Bank
@@ -178,18 +238,24 @@ Choose a Var to edit:\n\
   }
 }
 
+static void help(){
+  printf("\
+Commands:\n\
+  add\t-- add to data\n\
+  edit\t-- edit data\n\
+  show\t-- print a report with the existing data\n\
+  save\t-- save current data and exit\n\
+  exit\t-- exit the program without saving\n\
+  help\t-- displays this help message\n");
+}
+
 static int compare_strings(char *s1, char *s2){
-  return (
-    s1[0] == s2[0] && 
-    s1[1] == s2[1] && 
-    s1[2] == s2[2] && 
-    s1[3] == s2[3]
-  );
+  return !strcmp(s1,s2);
 }
 
 static void exec_command(data *d, char *cmd, char *fname, int *exit_code){
   if(compare_strings(cmd,"help")){
-    printf("Commands:\n  edit\t-- edit data\n  show\t-- print a report with the existing data\n  save\t-- save current data and exit\n  exit\t-- exit the program without saving\n  help\t-- displays this help message\n");
+    help();
   }
   if(compare_strings(cmd,"exit")){
     *(exit_code) = 1;
@@ -202,6 +268,9 @@ static void exec_command(data *d, char *cmd, char *fname, int *exit_code){
   }
   if(compare_strings(cmd,"edit")){
     edit_var(d);
+  }
+  if(compare_strings(cmd,"add\n") ){
+    add_to_var(d);
   }
   if(compare_strings(cmd,"show")){
     render(d);

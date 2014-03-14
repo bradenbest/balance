@@ -3,15 +3,15 @@
 #include "version.h"
 
 static const int MAJOR = 1;
-static const int MINOR = 6;
+static const int MINOR = 7;
 static const int PATCH = 1;
 
 void print_version(version *v){
   printf("Version ");
   if(v->patch){
-    printf("%i.%02i.%i\n", v->major, v->minor, v->patch);
+    printf("%i.%i.%i\n", v->major, v->minor, v->patch);
   }else{
-    printf("%i.%02i\n", v->major, v->minor);
+    printf("%i.%i\n", v->major, v->minor);
   }
 }
 

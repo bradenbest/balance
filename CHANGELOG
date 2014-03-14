@@ -98,3 +98,22 @@
 # 1.06.1
 
   *changed "v" in "version" to a capital "V"
+
+# 1.06.2
+
+  *changed compare_strings() to work properly
+
+# 1.07
+
+  +added add() function, with entry in help
+
+# 1.7
+
+  *changed versioning back to old method, now format is
+    x.y when z is 0 and
+    x.y.z when z is > 0
+
+# 1.7.1
+
+  [BUG] "add" wasnt being matched in prompt
+    added \n to end of "add"
