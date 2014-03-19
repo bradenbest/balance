@@ -25,6 +25,7 @@
 # 0.7.0
 
   +Added prompt() to interface.c
+  
   -Removed automatic call to render() in main.c
 
 # 0.8.0 [Beta]
@@ -34,11 +35,13 @@
 # 0.9.0
 
   +Added config.h to be included by all .h files
+
   +Added constant DEBUG_MODE to interface.h
 
 # 0.9.1
 
   [BUG] config.h was doing wacky stuff to the constants, confusing the program about where the file .balance_data was supposed to be, causing instant segfault upon running
+
   -removed config.h
 
 # 0.10.0
@@ -48,16 +51,19 @@
 # 0.10.1
 
   [BUG] calling any member of d returned junk like -137560345620 (documented [here](http://stackoverflow.com/questions/22315173/passing-struct-pointer-causes-integer-overflow-for-seemingly-no-reason))
+
   *changed function calls to properly send d so that saving could be possible from the prompt
 
 # 1.0.0 [Release]
 
   +added config.h back correctly, using conditions to check which .h file is including it
+
   +added ability to exit via Ctrl+D
 
 # 1.1.0
 
   +added constant VERSION
+
   +started versioning
 
 # 1.2.0
@@ -75,13 +81,17 @@
 # 1.5.0
 
   *adjusted saving/loading methods in data.c
+
   -removed extraneous members from struct data in data.h
+
   +started keeping archives of versions
+
   +wrote this changelog, wracking my brain to remember everything I did.
 
 # 1.05
 
   *changed version numbering format [x.y{.z}] format for sorting considerations
+  
     Explanation:
       x = Major version
       y = Minor version
@@ -90,9 +100,10 @@
 # 1.06
 
   -removed constant VERSION; user shouldn't be able to change it willy-nilly
-  +added version.c
-    +struct version
-    +void print_version() to build version string and print it
+
+  +added version.c<br>
+    +struct version<br>
+    +void print_version() to build version string and print it<br>
     +void set_version() to se version string. Version string is now held in version.c, which makes sense.
 
 # 1.06.1
@@ -110,10 +121,11 @@
 # 1.7
 
   *changed versioning back to old method, now format is
+  
     x.y when z is 0 and
     x.y.z when z is > 0
 
 # 1.7.1
 
-  [BUG] "add" wasnt being matched in prompt
+  [BUG] "add" wasnt being matched in prompt<br>
     added \n to end of "add"
