@@ -47,7 +47,7 @@
 
 # 0.10.1
 
-  [BUG] calling any member of d returned junk like -137560345620 (documented here: http://stackoverflow.com/questions/22315173/passing-struct-pointer-causes-integer-overflow-for-seemingly-no-reason)
+  [BUG] calling any member of d returned junk like -137560345620 (documented [here](http://stackoverflow.com/questions/22315173/passing-struct-pointer-causes-integer-overflow-for-seemingly-no-reason))
   *changed function calls to properly send d so that saving could be possible from the prompt
 
 # 1.0.0 [Release]
