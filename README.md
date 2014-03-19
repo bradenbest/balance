@@ -1,5 +1,5 @@
-Balance Tool by Braden Best
-=
+# Balance Tool by Braden Best
+
 This is a tool I wrote for myself after getting fed up with using separate calculators + vim + a textfile that I wrote as some kind of spartan money-tracker
 
 It has an uninspired name, but uses no libraries other than the standard library (no dependencies, so compilation is easy-peasy), and was written for a **VERY** specific purpose with **VERY** specific data in mind.
@@ -13,33 +13,30 @@ I seriously doubt you could find a use for this unless you need to keep track of
 
 But if you **actually** have a use for this, then have a blast! Source code is pretty short (about 400 lines), so I am pretty sure you would have no problem going in and fine-tuning it to your needs
 
-Configuring
--
-To configure, edit src/config.h
+## Configuring
+
+To configure, edit `src/config.h`
+
 After making changes, return to the main directory and re-compile to apply changes
 
     $ make install
 
-Compiling without installing 
--
-Not sure why you'd want to do this unless you are testing, but the command is:
+## Compiling
 
     $ make
 
-Compiling and installing
--
-    $ make install
+## Installing (automatically compiles)
 
-Going against convention, the command will both compile and install with no need for root priviledges
+    $ sudo make install
 
-Uninstalling
--
-    $ make uninstall
+## Uninstalling
 
-Cleaning
--
+    $ sudo make uninstall
+
+## Cleaning
+
     $ make clean
 
-Running
--
+## Running
+
     $ balance
