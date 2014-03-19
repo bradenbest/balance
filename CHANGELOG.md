@@ -129,3 +129,7 @@
 
   [BUG] "add" wasnt being matched in prompt<br>
     added \n to end of "add"
+
+# End
+
+  1.7.1 marks the last time this changelog will ever be updated, as git makes this redundant.
