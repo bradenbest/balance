@@ -20,6 +20,8 @@ To configure, edit `src/config.h`
 After making changes, return to the main directory and re-compile to apply changes
 
     $ make install
+    
+Note: the FILENAME constant must be absolute. That means no `~/some-directory`. It has to be e.g. `/home/yourusername/some-directory`
 
 ## Compiling
 
@@ -40,3 +42,7 @@ After making changes, return to the main directory and re-compile to apply chang
 ## Running
 
     $ balance
+
+## A note about the installer
+
+The installer contains an **unstable** build compiled with the default settings. It will only run in your home directory. Trying to run it anywhere else will cause a segmentation fault. The installer is meant for people unfamiliar with the `make` build system who want a `right now` solution. If you are familiar with make, then go ahead and follow the readme.
