@@ -30,9 +30,10 @@ To configure, edit `src/config.h`
 After making changes, return to the main directory and re-compile to apply changes
 
 ```bash
+    $ make clean
     $ make install
 ```
-    
+
 Note: the FILENAME constant must be absolute. That means no `~/some-directory`. It has to be e.g. `/home/yourusername/some-directory`
 
 ### Compiling
