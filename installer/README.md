@@ -13,12 +13,11 @@ Move the generated binary file `balance` to /installer/build
 
     $ mv balance installer/build/
 
-Package up `/installer` directory as a tar.gz and a .zip
+Package up `/installer` directory as a tar.gz
 
     $ tar zcf installer.tar.gz installer/
-    $ zip installer.zip installer/* installer/build/*
 
-Upload the resulting .zip and .tar.gz using the release feature. Format of release should be as follows:
+Upload the resulting .tar.gz using the release feature. Format of release should be as follows:
 
     Tag version: [version]
     
@@ -26,4 +25,4 @@ Upload the resulting .zip and .tar.gz using the release feature. Format of relea
     
     Describe this release: [description of release]
     
-    Attach Binaries: [.tar.gz and .zip files]
+    Attach Binaries: [.tar.gz file]
