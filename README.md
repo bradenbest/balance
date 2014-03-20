@@ -13,7 +13,17 @@ I seriously doubt you could find a use for this unless you need to keep track of
 
 But if you **actually** have a use for this, then have a blast! Source code is pretty short (about 400 lines), so I am pretty sure you would have no problem going in and fine-tuning it to your needs
 
-## Configuring
+## Automatic Installation
+
+Download the latest release from the releases tab, extract the archive, and from a terminal, run `./install`.
+
+After that, make sure you are in your `home` directory (`/home/user`), and then run `balance`.
+
+See note at end of README for more on that quirk.
+
+## Manual Installation
+
+### Configuring
 
 To configure, edit `src/config.h`
 
@@ -23,26 +33,26 @@ After making changes, return to the main directory and re-compile to apply chang
     
 Note: the FILENAME constant must be absolute. That means no `~/some-directory`. It has to be e.g. `/home/yourusername/some-directory`
 
-## Compiling
+### Compiling
 
     $ make
 
-## Installing (automatically compiles)
+### Installing (automatically compiles)
 
     $ sudo make install
 
-## Uninstalling
+### Uninstalling
 
     $ sudo make uninstall
 
-## Cleaning
+### Cleaning
 
     $ make clean
 
-## Running
+### Running
 
     $ balance
 
 ## A note about the installer
 
-The installer contains an **unstable** build compiled with the default settings. It will only run in your home directory. Trying to run it anywhere else will cause a segmentation fault. The installer is meant for people unfamiliar with the `make` build system who want a `right now` solution. If you are familiar with make, then go ahead and follow the readme.
+The installer contains an **unstable** build compiled with the default settings. It will only run in your home directory. Trying to run it anywhere else will cause a segmentation fault. The installer is meant for people unfamiliar with the `make` build system who want a `right now` solution. If you are familiar with make, then go ahead and follow the manual installation instructions above.
