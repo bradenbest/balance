@@ -4,7 +4,7 @@
 
 static const int MAJOR = 1;
 static const int MINOR = 7;
-static const int PATCH = 1;
+static const int PATCH = 2;
 
 void print_version(version *v){
   printf("Version ");
