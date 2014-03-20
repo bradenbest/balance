@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd build && 
+  sudo make uninstall && 
+  echo "balance tool has been removed from your system"

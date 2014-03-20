@@ -1,0 +1,8 @@
+#!/bin/bash
+# Rather than fight with make, I'm using bash for this part
+
+if [ -f ~/.balance_data ] ; then 
+  echo data found
+else 
+  echo copying data && cp .balance_data ~/
+fi
