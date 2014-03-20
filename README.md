@@ -29,32 +29,44 @@ To configure, edit `src/config.h`
 
 After making changes, return to the main directory and re-compile to apply changes
 
+```bash
     $ make install
+```
     
 Note: the FILENAME constant must be absolute. That means no `~/some-directory`. It has to be e.g. `/home/yourusername/some-directory`
 
 ### Compiling
 
+```bash
     $ make
+```
 
 ### Installing (automatically compiles)
 
+```bash
     $ sudo make install
+```
 
 ### Uninstalling
 
+```bash
     $ sudo make uninstall
+```
 
 ### Cleaning
 
+```bash
     $ make clean
+```
 
 ### Running
 
+```bash
     $ balance
+```
 
 ## A note about the installer
 
-The installer contains an **unstable** build compiled with the default settings. 
+The installer contains a pre-compiled **unstable** build with the default settings. 
 
 It will only run while you are in your home directory. Trying to run it anywhere else will cause a segmentation fault. The installer is meant for people unfamiliar with the `make` build system who want a `right now` solution. If you are familiar with make, then go ahead and follow the manual installation instructions above.
