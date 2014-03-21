@@ -6,6 +6,7 @@
 #include "config.h"
 #include "version.h"
 #include "interface.h"
+#include "get_home.h"
 
 int main(int argc, char **argv){
   char src[config.data.MAXFS];
