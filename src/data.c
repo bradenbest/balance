@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "data.h"
+#include "config.h"
 
 void file_copy(char *src, char *file){
   char c;

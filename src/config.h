@@ -1,13 +1,21 @@
-#ifdef DATA_H
-#  define MAXFS 10000
-#  define FILENAME ".balance_data"
-#endif
+typedef struct{
+  unsigned int MAXFS;
+  char *FILENAME;
+} data_conf;
 
-#ifdef INTERFACE_H
-#  define DEBUG_MODE 0
-#endif
+typedef struct{
+  unsigned int DEBUG_MODE : 1;
+} inter_conf;
 
-#ifdef WAGECALC_H
-#  define WAGE 7.5
-#  define INCOME_TAX 13.1
-#endif
+typedef struct{
+  double WAGE;
+  double INCOME_TAX;
+} wage_conf;
+
+typedef struct{
+  data_conf data;
+  inter_conf interface;
+  wage_conf wage;
+} global_conf;
+
+const global_conf config;

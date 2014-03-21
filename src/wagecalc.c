@@ -1,4 +1,5 @@
 #include "wagecalc.h"
+#include "config.h"
 
 double calcWage(int minutes, double wage){
   return (double)minutes * (wage / 60);
@@ -13,5 +14,5 @@ double timeInHours(int hours, int minutes){
 }
 
 double tax(double gross){
-  return gross * (INCOME_TAX / 100);
+  return gross * (config.wage.INCOME_TAX / 100);
 }

@@ -5,6 +5,7 @@
 #include "data.h"
 #include "wagecalc.h"
 #include "version.h"
+#include "config.h"
 
 #include "interface.h"
 
@@ -46,7 +47,7 @@ static void render(data *d){
 
   //wage next totals
   int wnm_total = timeInMinutes(wnh,wnm);
-  double wn_gross = calcWage(wnm_total,WAGE);
+  double wn_gross = calcWage(wnm_total,config.wage.WAGE);
 
   //wage current
   int wch = d->wage_current_hours;
@@ -54,7 +55,7 @@ static void render(data *d){
 
   //wage current totals
   int wcm_total = timeInMinutes(wch,wcm);
-  double wc_gross = calcWage(wcm_total,WAGE);
+  double wc_gross = calcWage(wcm_total,config.wage.WAGE);
 
   printf("\
 Dollar{\n\
@@ -96,7 +97,7 @@ Paycheck{\n\
   Current{\n\
     %i:%02i (%0.2f) @ %0.2f/hr = $%0.2f (w/ tax: $%0.2f)\n\
   }\n\
-}\n\n",wnh, wnm, timeInHours(wnh,wnm), WAGE,wn_gross, wn_gross - tax(wn_gross), wch, wcm, timeInHours(wch,wcm), WAGE, wc_gross, wc_gross - tax(wc_gross));
+}\n\n",wnh, wnm, timeInHours(wnh,wnm), config.wage.WAGE,wn_gross, wn_gross - tax(wn_gross), wch, wcm, timeInHours(wch,wcm), config.wage.WAGE, wc_gross, wc_gross - tax(wc_gross));
 
 }
 
@@ -280,8 +281,8 @@ static void exec_command(data *d, char *cmd, char *fname, int *exit_code){
 void prompt(data *d, version *v, char *fname){
   char cmd[5];
   int exit_code = 0;
-  if(DEBUG_MODE){
-    printf("DEBUG :: WAGE = %0.2f\nDEBBUG :: TAX = %0.2f\nDEBUG :: FILENAME = %s\nDEBUG :: MAXFS = %i\n", WAGE, INCOME_TAX, FILENAME, MAXFS);
+  if(config.interface.DEBUG_MODE){
+    printf("DEBUG MODE {\n  WAGE\t\t= %0.2f\n  TAX\t\t= %0.2f\n  FILENAME\t= %s\n  MAXFS\t\t= %i\n}\n", config.wage.WAGE, config.wage.INCOME_TAX, config.data.FILENAME, config.data.MAXFS);
   }
   printf("Balance Tool by Braden Best\n");
   print_version(v);

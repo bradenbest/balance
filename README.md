@@ -25,16 +25,15 @@ See note at end of README for more on that quirk.
 
 ### Configuring
 
-To configure, edit `src/config.h`
+To configure, edit `src/config.c`
 
 After making changes, return to the main directory and re-compile to apply changes
 
 ```bash
-    $ make clean
     $ make install
 ```
 
-Note: the FILENAME constant must be absolute. That means no `~/some-directory`. It has to be e.g. `/home/yourusername/some-directory`
+Note: the FILENAME constant must be absolute. That means no bash shortcuts like `~/some-dir` or `$(SOMEPATH)/some-dir`.
 
 ### Compiling
 

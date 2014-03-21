@@ -3,11 +3,12 @@
 #include <string.h>
 
 #include "data.h"
+#include "config.h"
 #include "version.h"
 #include "interface.h"
 
 int main(int argc, char **argv){
-  char src[MAXFS];
+  char src[config.data.MAXFS];
   char fname[100];
   data d;
   version v;
@@ -15,7 +16,7 @@ int main(int argc, char **argv){
   set_version(&v);
 
   if(argc > 1)    strcpy(fname,argv[1]);
-  else            strcpy(fname,FILENAME);
+  else            strcpy(fname,config.data.FILENAME);
   
   file_copy(src,fname);
 
