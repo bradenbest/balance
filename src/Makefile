@@ -1,4 +1,4 @@
-OBJS=main.o data.o wagecalc.o interface.o version.o config.o
+OBJS=main.o data.o wagecalc.o interface.o version.o config.o get_home.o
 FLAGS=-Wall -O2
 
 all: $(OBJS)
@@ -16,6 +16,8 @@ version.o: version.c version.h
 	gcc -c version.c $(FLAGS)
 config.o: config.c config.h
 	gcc -c config.c $(FLAGS)
+get_home.o: get_home.c get_home.h
+	gcc -c get_home.c $(FLAGS)
 
 clean:
 	rm $(OBJS)

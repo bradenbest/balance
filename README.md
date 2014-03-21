@@ -17,9 +17,7 @@ But if you **actually** have a use for this, then have a blast! Source code is p
 
 Download the latest release from the releases tab, extract the archive, and from a terminal, run `./install`.
 
-After that, make sure you are in your `home` directory (`/home/user`), and then run `balance`.
-
-See note at end of README for more on that quirk.
+After that, simply run `balance`
 
 ## Manual Installation
 
@@ -67,6 +65,10 @@ Note: the FILENAME constant must be absolute. That means no bash shortcuts like 
 
 ## A note about the installer
 
-The installer contains a pre-compiled **unstable** build with the default settings. 
+The installer contains a pre-compiled build with the default settings. It is recommended that you build from source so you can configure it to your liking. 
 
-It will only run while you are in your home directory. Trying to run it anywhere else will cause a segmentation fault. The installer is meant for people unfamiliar with the `make` build system who want a `right now` solution. If you are familiar with make, then go ahead and follow the manual installation instructions above.
+Basically:
+
+If you want a "RIGHT NOW" solution, then follow the `Automatic instructions`
+
+If you want to be able to configure some things like taxing percentage and minimum wage, then follow the `Manual instructions`
