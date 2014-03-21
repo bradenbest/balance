@@ -282,7 +282,7 @@ void prompt(data *d, version *v, char *fname){
   char cmd[5];
   int exit_code = 0;
   if(config.interface.DEBUG_MODE){
-    printf("DEBUG VARS {\n  WAGE\t\t= %0.2f\n  TAX\t\t= %0.2f\n  FILENAME\t= %s\n  MAXFS\t\t= %i\n}\n", config.wage.WAGE, config.wage.INCOME_TAX, config.data.FILENAME, config.data.MAXFS);
+    printf("DEBUG :: config vars : {\n  WAGE\t\t= %0.2f\n  TAX\t\t= %0.2f\n  FILENAME\t= %s\n  MAXFS\t\t= %i\n}\n", config.wage.WAGE, config.wage.INCOME_TAX, config.data.FILENAME, config.data.MAXFS);
   }
   printf("Balance Tool by Braden Best\n");
   print_version(v);
