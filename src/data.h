@@ -1,14 +1,3 @@
-#define DATA_H
-#include "config.h"
-
-#ifndef MAXFS
-#  define MAXFS 10000
-#endif
-
-#ifndef FILENAME
-#  define FILENAME ".balance_data"
-#endif
-
 typedef struct data{
   unsigned int dollar_bank : 32;
   unsigned int dollar_bank_extra : 32;
