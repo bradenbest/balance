@@ -9,14 +9,21 @@
 
 int main(int argc, char **argv){
   char src[config.data.MAXFS];
-  char fname[100];
+  char fname[1000];
   data d;
   version v;
 
   set_version(&v);
 
-  if(argc > 1)    strcpy(fname,argv[1]);
-  else            strcpy(fname,config.data.FILENAME);
+  if(argc > 1){ // Argument is passed
+    strcpy(fname,argv[1]);
+  }else{
+    if(config.data.FILENAME[0] != 0){ // File specified in config.c
+      strcpy(fname,config.data.FILENAME);
+    }else{ // Neither an argument is passed, nor file specified. Default to checking $HOME
+      get_home(fname);
+    }
+  }
   
   file_copy(src,fname);
 
