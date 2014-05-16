@@ -28,19 +28,14 @@ static const char blank[11] = {0,0,0,0,0,0,0,0,0,0,0};
 static const int dlen = 11;
 
 static void get_val(char *buf, char *src, int index){
-  int i = index * dlen;
+  int i = index * dlen,
+      pos = 0;
   strcpy(buf,blank);
-  buf[0] = src[i+0]; // If I try to do it via a loop, it claims stack smashing.
-  buf[1] = src[i+1];
-  buf[2] = src[i+2];
-  buf[3] = src[i+3];
-  buf[4] = src[i+4];
-  buf[5] = src[i+5];
-  buf[6] = src[i+6];
-  buf[7] = src[i+7];
-  buf[8] = src[i+8];
-  buf[9] = src[i+9]; // 32-bit limit = 4294967295, which is 10 digits
-  buf[10] = 0;
+  while(pos < dlen-1){
+    buf[pos] = src[i+pos];
+    pos++;
+  }
+  buf[pos] = 0;
 }
 
 void data_parse(data *d, char *src){
