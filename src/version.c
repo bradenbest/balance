@@ -3,7 +3,7 @@
 #include "version.h"
 
 static const int MAJOR = 1;
-static const int MINOR = 9;
+static const int MINOR = 10;
 static const int PATCH = 0;
 
 void print_version(version *v){

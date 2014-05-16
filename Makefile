@@ -1,16 +1,25 @@
+TARGET=balance
+DATA_FILE=.balance_data
+
 all:
 	cd src && $(MAKE)
-	mv src/balance ./
+	mv src/$(TARGET) ./
 
 clean:
 	cd src && $(MAKE) clean
 
 install: all
-	sudo mv balance /usr/local/bin
+	mv $(TARGET) /usr/local/bin
 	@./copy
 
-uninstall:
-	sudo rm /usr/local/bin/balance
-	@echo Make sure to remove the file .balance_data from your ~/ directory!
+remove: uninstall
+	rm /usr/local/bin/$(TARGET)
 
-.PHONY: all clean install uninstall
+uninstall: remove
+	@echo Make sure to remove the file .balance_data from your ~/ directory!
+# I don't have it remove it automatically, because the user might want to keep the data.
+
+purge: remove
+	rm ~/$(DATA_FILE)
+
+.PHONY: all clean install uninstall remove purge

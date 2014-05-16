@@ -6,7 +6,7 @@
 #include "config.h"
 
 void file_copy(char *src, char *file){
-  char c;
+  int c;
   int i = 0;
   FILE *f = fopen(file,"r");
   while((c = getc(f)) != EOF){ // get contents until EOF
