@@ -59,32 +59,32 @@ static void render(data *d){
 
   printf("\
 Dollar{\n\
-  Bank:   $%i\n\
-          $%i\n\
-  Wallet: $%i\n\
+  Bank:   $%u\n\
+          $%u\n\
+  Wallet: $%u\n\
 }\n\n",db, dbe, dw);
 
   printf("\
 Coin{\n\
   All{\n\
-    Quarters:\t%02i\n\
-    Dimes:\t%02i\n\
-    Nickels:\t%02i\n\
-    Pennies:\t%02i\n\
+    Quarters:\t%02u\n\
+    Dimes:\t%02u\n\
+    Nickels:\t%02u\n\
+    Pennies:\t%02u\n\
     Total:\t$%0.2f\n\
   }\n\
   Bank{\n\
-    Quarters:\t%02i\n\
-    Dimes:\t%02i\n\
-    Nickels:\t%02i\n\
-    Pennies:\t%02i\n\
+    Quarters:\t%02u\n\
+    Dimes:\t%02u\n\
+    Nickels:\t%02u\n\
+    Pennies:\t%02u\n\
     Total:\t$%0.2f\n\
   }\n\
   Rolls{\n\
-    $10.00 (x40) Quarters:\t%i\n\
-    $ 5.00 (x50) Dimes:\t\t%i\n\
-    $ 2.00 (x40) Nickels:\t%i\n\
-    $ 0.50 (x50) Pennies:\t%i\n\
+    $10.00 (x40) Quarters:\t%u\n\
+    $ 5.00 (x50) Dimes:\t\t%u\n\
+    $ 2.00 (x40) Nickels:\t%u\n\
+    $ 0.50 (x50) Pennies:\t%u\n\
     Total:\t\t\t$%0.2f\n\
   }\n\
 }\n\n",cq, cd, cn, cp, c_total, cmq, cmd, cmn, cmp, cm_total, crq, crd, crn, crp, cr_total);
@@ -92,10 +92,10 @@ Coin{\n\
   printf("\
 Paycheck{\n\
   Next{\n\
-    %i:%02i (%0.2f) @ %0.2f/hr = $%0.2f (w/ tax: $%0.2f)\n\
+    %u:%02u (%0.2f) @ %0.2f/hr = $%0.2f (w/ tax: $%0.2f)\n\
   }\n\
   Current{\n\
-    %i:%02i (%0.2f) @ %0.2f/hr = $%0.2f (w/ tax: $%0.2f)\n\
+    %u:%02u (%0.2f) @ %0.2f/hr = $%0.2f (w/ tax: $%0.2f)\n\
   }\n\
 }\n\n",wnh, wnm, timeInHours(wnh,wnm), config.wage.WAGE,wn_gross, wn_gross - tax(wn_gross), wch, wcm, timeInHours(wch,wcm), config.wage.WAGE, wc_gross, wc_gross - tax(wc_gross));
 
@@ -105,24 +105,24 @@ static void list_vars(data *d){
   printf("\
 Choose a variable to edit:\n\
   Dollar{\n\
-    <" YELLOW "1" DEFAULT "> Bank:\t\t%i\n\
-    <" YELLOW "2" DEFAULT "> Bank (extra):\t%i\n\
-    <" YELLOW "3" DEFAULT "> Wallet:\t\t%i\n\
+    <" YELLOW "1" DEFAULT "> Bank:\t\t%u\n\
+    <" YELLOW "2" DEFAULT "> Bank (extra):\t%u\n\
+    <" YELLOW "3" DEFAULT "> Wallet:\t\t%u\n\
   }\n\
   Coin{\n\
-    <" YELLOW "4" DEFAULT "> Quarters:\t%i\n\
-    <" YELLOW "5" DEFAULT "> Dimes:\t\t%i\n\
-    <" YELLOW "6" DEFAULT "> Nickels:\t%i\n\
-    <" YELLOW "7" DEFAULT "> Pennies:\t%i\n\
+    <" YELLOW "4" DEFAULT "> Quarters:\t%u\n\
+    <" YELLOW "5" DEFAULT "> Dimes:\t\t%u\n\
+    <" YELLOW "6" DEFAULT "> Nickels:\t%u\n\
+    <" YELLOW "7" DEFAULT "> Pennies:\t%u\n\
   }\n\
   Wage{\n\
     Next{\n\
-      <" YELLOW "8" DEFAULT "> Hours:\t%i\n\
-      <" YELLOW "9" DEFAULT "> Minutes:\t%i\n\
+      <" YELLOW "8" DEFAULT "> Hours:\t%u\n\
+      <" YELLOW "9" DEFAULT "> Minutes:\t%u\n\
     }\n\
     Current{\n\
-      <" YELLOW "10" DEFAULT "> Hours:\t%i\n\
-      <" YELLOW "11" DEFAULT "> Minutes:\t%i\n\
+      <" YELLOW "10" DEFAULT "> Hours:\t%u\n\
+      <" YELLOW "11" DEFAULT "> Minutes:\t%u\n\
     }\n\
   }\n",d->dollar_bank,d->dollar_bank_extra,d->dollar_wallet, d->coin_q, d->coin_d, d->coin_n, d->coin_p, d->wage_next_hours, d->wage_next_minutes, d->wage_current_hours, d->wage_current_minutes);
 }
