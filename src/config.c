@@ -1,8 +1,8 @@
 #include "config.h"
 
 const global_conf config = {
-  {  10000,        ""      },
-  /* MAXFS     FILENAME   */
+  {       ""      },
+  /*   FILENAME   */
   {       0      },
   /* DEBUG_MODE */
   {  7.5,       13.1   }

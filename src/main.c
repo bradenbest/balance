@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "file.h"
 #include "data.h"
 #include "config.h"
 #include "version.h"
@@ -9,7 +10,7 @@
 #include "get_home.h"
 
 int main(int argc, char **argv){
-  char src[config.data.MAXFS];
+  char *src;
   char fname[1000];
   data d;
   version v;
@@ -32,8 +33,7 @@ int main(int argc, char **argv){
       }
     }
   }
-  
-  file_copy(src,fname);
+  src = fcopy(fname);
 
   data_parse(&d,src);
 

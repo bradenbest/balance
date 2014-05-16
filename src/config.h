@@ -1,5 +1,4 @@
 typedef struct{
-  unsigned int MAXFS;
   char *FILENAME;
 } data_conf;
 

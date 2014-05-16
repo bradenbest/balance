@@ -5,17 +5,6 @@
 #include "data.h"
 #include "config.h"
 
-void file_copy(char *src, char *file){
-  int c;
-  int i = 0;
-  FILE *f = fopen(file,"r");
-  while((c = getc(f)) != EOF){ // get contents until EOF
-    src[i++] = c;
-  }
-  src[i] = 0; // terminate string
-  fclose(f);
-}
-
 void file_save(data *d, char *file){
   FILE *f = fopen(file,"w");
   fprintf(f,
