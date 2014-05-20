@@ -1,8 +1,8 @@
-balance: main.o data.o wagecalc.o interface.o version.o config.o get_home.o file.o
+balance: main.o config.o
 	gcc $^ -o $@
 
 %.o: %.c
-	gcc -c $^ -o $@ -Wall -O2
+	gcc -c -std=c99 $^ -o $@ -Wall -O2
 
 clean:
 	rm *.o

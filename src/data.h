@@ -1,18 +1,13 @@
 typedef struct data{
-  unsigned int dollar_bank : 32;
-  unsigned int dollar_bank_extra : 32;
-  unsigned int dollar_wallet : 32;
-  unsigned int coin_q : 32;
-  unsigned int coin_d : 32;
-  unsigned int coin_n : 32;
-  unsigned int coin_p : 32;
-  unsigned int wage_next_hours : 32;
-  unsigned int wage_next_minutes : 32;
-  unsigned int wage_current_hours : 32;
-  unsigned int wage_current_minutes : 32;
+  unsigned long dollar_bank;
+  unsigned long dollar_bank_extra;
+  unsigned long dollar_wallet;
+  unsigned long coin_q;
+  unsigned long coin_d;
+  unsigned long coin_n;
+  unsigned long coin_p;
+  unsigned long wage_next_hours;
+  unsigned long wage_next_minutes;
+  unsigned long wage_current_hours;
+  unsigned long wage_current_minutes;
 } data;
-
-void file_copy(char *src, char *file);
-void file_save(data *d, char *file);
-void data_parse(data *d, char *src);
-
