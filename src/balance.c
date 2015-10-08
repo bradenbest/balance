@@ -1,13 +1,117 @@
+// Headers
+// wagecalc /*{{{*/
+double calcWage(int minutes, double wage);
+int timeInMinutes(int hours, int minutes);
+double timeInHours(int hours, int minutes);
+double tax(double gross);/*}}}*/
+// version/*{{{*/
+typedef struct version{
+  unsigned int major : 32;
+  unsigned int minor : 32;
+  unsigned int patch : 32;
+} version;
+
+void print_version(version *v);
+void set_version(version *v);
+/*}}}*/
+// interface/*{{{*/
+#define BLUE "\033[1;34;40m"
+#define YELLOW "\033[1;33;40m"
+#define DEFAULT "\033[0;37;40m"
+
+void prompt(data *d, version *v, char *fname);
+/*}}}*/
+//get_home/*{{{*/
+void get_home(char *str);
+/*}}}*/
+//data/*{{{*/
+typedef struct data{
+  unsigned int dollar_bank : 32;
+  unsigned int dollar_bank_extra : 32;
+  unsigned int dollar_wallet : 32;
+  unsigned int coin_q : 32;
+  unsigned int coin_d : 32;
+  unsigned int coin_n : 32;
+  unsigned int coin_p : 32;
+  unsigned int wage_next_hours : 32;
+  unsigned int wage_next_minutes : 32;
+  unsigned int wage_current_hours : 32;
+  unsigned int wage_current_minutes : 32;
+} data;
+
+void file_copy(char *src, char *file);
+void file_save(data *d, char *file);
+void data_parse(data *d, char *src);
+/*}}}*/
+//config/*{{{*/
+typedef struct{
+  char *FILENAME;
+} data_conf;
+
+typedef struct{
+  unsigned int DEBUG_MODE : 1;
+} inter_conf;
+
+typedef struct{
+  double WAGE;
+  double INCOME_TAX;
+} wage_conf;
+
+typedef struct{
+  data_conf data;
+  inter_conf interface;
+  wage_conf wage;
+} global_conf;
+
+const global_conf config;
+/*}}}*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "data.h"
-#include "wagecalc.h"
-#include "version.h"
-#include "config.h"
+// code
+// wagecalc/*{{{*/
+double calcWage(int minutes, double wage){
+  return (double)minutes * (wage / 60);
+}
 
-#include "interface.h"
+int timeInMinutes(int hours, int minutes){
+  return (hours * 60) + minutes;
+}
+
+double timeInHours(int hours, int minutes){
+  return (double)hours + ((double)minutes / 60);
+}
+
+double tax(double gross){
+  return gross * (config.wage.INCOME_TAX / 100);
+}
+/*}}}*/
+// version/*{{{*/
+static const int MAJOR = 1;
+static const int MINOR = 11;
+static const int PATCH = 1;
+
+void print_version(version *v){
+  printf("Version ");
+  if(v->patch){
+    printf("%i.%i.%i\n", v->major, v->minor, v->patch);
+  }else{
+    printf("%i.%i\n", v->major, v->minor);
+  }
+}
+
+void set_version(version *v){
+  v->major = MAJOR;
+  v->minor = MINOR;
+  v->patch = PATCH;
+}
+
+/* This file should go in interface.h
+ * Only thing that is necessary: #define VERSION "1.11.1"
+ *//*}}}*/
+// interface/*{{{*/
 
 #define ENV_PROMPT(X) printf("Enter New Value for " X "\n" YELLOW "--> " DEFAULT); if(scanf(" %d", &new_val) == -1)    break // Enter New Value Prompt
 #define EAV_PROMPT(X) printf("Enter Value to Add to " X "\n" YELLOW "--> " DEFAULT); if(scanf(" %d", &new_val) == -1)    break // Enter Add Value Prompt
@@ -297,4 +401,103 @@ void prompt(data *d, version *v, char *fname){
     exec_command(d,cmd,fname,&exit_code);
     if(exit_code)    break;
   }
+}/*}}}*/
+// get_home/*{{{*/
+
+void get_home(char *str){
+  strcpy(str,getenv("HOME"));
+  strcat(str,"/.balance_data");
+}/*}}}*/
+// data/*{{{*/
+void file_save(data *d, char *file){
+  FILE *f = fopen(file,"w");
+  fprintf(f,
+    "%010i,%010i,%010i,%010i,%010i,%010i,%010i,%010i,%010i,%010i,%010i",
+    d->dollar_bank,
+    d->dollar_bank_extra,
+    d->dollar_wallet,
+    d->coin_q,
+    d->coin_d,
+    d->coin_n,
+    d->coin_p,
+    d->wage_next_hours,
+    d->wage_next_minutes,
+    d->wage_current_hours,
+    d->wage_current_minutes
+  );
+  fclose(f);
 }
+
+static const char blank[11] = {0,0,0,0,0,0,0,0,0,0,0};
+static const int dlen = 11;
+
+static void get_val(char *buf, char *src, int index){
+  int i = index * dlen,
+      pos = 0;
+  strcpy(buf,blank);
+  while(pos < dlen-1){
+    buf[pos] = src[i+pos];
+    pos++;
+  }
+  buf[pos] = 0;
+}
+
+void data_parse(data *d, char *src){
+  char buf[11];
+  #define GV(i) get_val(buf,src,i)
+  GV(0);  d->dollar_bank          = atoi(buf);
+  GV(1);  d->dollar_bank_extra    = atoi(buf);
+  GV(2);  d->dollar_wallet        = atoi(buf);
+  GV(3);  d->coin_q               = atoi(buf);
+  GV(4);  d->coin_d               = atoi(buf);
+  GV(5);  d->coin_n               = atoi(buf);
+  GV(6);  d->coin_p               = atoi(buf);
+  GV(7);  d->wage_next_hours      = atoi(buf);
+  GV(8);  d->wage_next_minutes    = atoi(buf);
+  GV(9);  d->wage_current_hours   = atoi(buf);
+  GV(10); d->wage_current_minutes = atoi(buf);
+}/*}}}*/
+// config/*{{{*/
+const global_conf config = {
+  {       ""      },
+  /*   FILENAME   */
+  {       0      },
+  /* DEBUG_MODE */
+  {  7.5,       13.1   }
+  /* WAGE   INCOME_TAX*/
+};
+
+// WAGE and INCOME_TAX should become part of struct data, no filename, file should be decided by get_home at runtime. Fuck debug mode/*}}}*/
+// main/*{{{*/
+int main(int argc, char **argv){
+  char *src;
+  char fname[1000];
+  data d;
+  version v;
+
+  set_version(&v);
+
+  if(config.interface.DEBUG_MODE)    printf("DEBUG :: Checking for arguments.\n");
+  if(argc > 1){ // Argument is passed
+    strcpy(fname,argv[1]);
+    if(config.interface.DEBUG_MODE)    printf("DEBUG :: Argument found\nDEBUG :: Trying argument \"%s\"\n", fname);
+  }else{
+    if(config.interface.DEBUG_MODE)    printf("DEBUG :: No arguments found\nDEBUG :: Checking for config.\n");
+    if(config.data.FILENAME[0] != 0){ // File specified in config.c
+      strcpy(fname,config.data.FILENAME);
+      if(config.interface.DEBUG_MODE)    printf("DEBUG :: Config found\nDEBUG :: Trying config.data.FILENAME (\"%s\").\n", fname);
+    }else{ // Neither an argument is passed, nor file specified. Default to checking $HOME
+      get_home(fname);
+      if(config.interface.DEBUG_MODE){
+        printf("DEBUG :: No File Specified in config.\nDEBUG :: Defaulting to HOME environment variable (\"%s\"). If this fails, the program will segfault.\n", fname);
+      }
+    }
+  }
+  src = fcopy(fname);
+
+  data_parse(&d,src);
+
+  prompt(&d,&v,fname);
+
+  return 0;
+}/*}}}*/

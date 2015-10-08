@@ -1,0 +1,14 @@
+balance: There is a function called fread/fwrite
+
+(object, size, #elements, file)
+
+They dump/write memory from/to a file
+
+Can be applied DIRECTLY.
+
+balance data model was simple. Struct with no pointers.
+
+Ideal.
+
+
+Make everything in one file first, then figure out what to split.
