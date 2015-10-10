@@ -28,6 +28,7 @@ void data_load(data *d){/*{{{*/
         fputs("File ~/" FILENAME " doesn't exist. I will create it now.\n", stderr);
         data_init(d);
         data_save(d);
+        return;
     } else {
         fread(d, sizeof(data), 1, f);
     }
