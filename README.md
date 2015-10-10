@@ -6,17 +6,21 @@ Now that I know what I'm doing in C, it's a hell of a lot more stable. No warnin
 
 ## Compiling
 
-To compile,
+To compile:
 
-    $ cd src && make
+    $ make
 
-By default, it will compile with colors turned off. This is for portability with terminals that don't understand ANSI color escapes, and would print something like `[0;37;40mHello[0m` otherwise
+By default, it will compile with colors turned off. This is for portability with terminals that don't understand ANSI color escapes, and would print something like `[0;37;40mHello[0m` otherwise.
 
-To turn colors on, edit `src/makefile` and change the `-DUSE_COLOR` macro to 1, then recompile.
+To turn colors on, edit `src/config.mk` and change `USE_COLOR`, then run:
 
-## Installing
+    $ make
 
-To install,
+If it complains `make: Nothing to be done for 'all'.` or `make: balance is up to date`, then run:
+
+    $ make clean && make
+
+## Install / Uninstall
 
     $ sudo make install
     $ sudo make uninstall

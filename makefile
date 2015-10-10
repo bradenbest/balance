@@ -1,3 +1,5 @@
+all: balance
+
 install: balance
 	mv $^ /usr/local/bin
 
@@ -8,4 +10,7 @@ balance:
 	cd src && $(MAKE)
 	mv src/balance ./ -i
 
-.PHONY: install uninstall
+clean:
+	rm balance
+
+.PHONY: all install uninstall clean

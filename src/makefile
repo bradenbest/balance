@@ -1,4 +1,6 @@
-flags=-Wall -std=c99 -DVERSION='"2.0.1"' -DUSE_COLOR=0
+include config.mk
+
+flags=-Wall -std=c99 -DVERSION=$(VERSION) -DUSE_COLOR=$(USE_COLOR)
 cfiles=balance.c ui.c input.c calc.c main.c history.c
 
 balance: $(cfiles)
