@@ -4,10 +4,12 @@ typedef enum {
     cmd_add,
     cmd_config,
     cmd_edit,
+    cmd_get_time,
     cmd_help,
     cmd_history,
     cmd_save,
     cmd_show,
+    cmd_time_shift,
 } command;
 
 typedef enum {

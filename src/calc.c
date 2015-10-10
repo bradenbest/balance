@@ -30,7 +30,9 @@ int calc_hours_portion(int minutes){/*{{{*/
     return minutes / 60;
 }/*}}}*/
 double calc_hours_total(int minutes){/*{{{*/
-    return ((double) minutes / 60) + (minutes % 60);
+    int h = calc_hours_portion(minutes),
+        m = calc_minutes_portion(minutes);
+    return (double)h + (double)m / 60;
 }/*}}}*/
 int calc_minutes_portion(int minutes){/*{{{*/
     return minutes % 60;
