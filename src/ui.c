@@ -191,7 +191,7 @@ static void print_help(){/*{{{*/
             "  show         sh   print a full report of the data\n"
             "  time_shift   ts   push current minutes to next minutes\n"
             "\n"
-            "You can also quit by pressind Ctrl+D\n"
+            "You can also quit by pressing Ctrl+D\n"
             "");
 }/*}}}*/
 static void print_wage_part(data *d, wage_mode mode){/*{{{*/
