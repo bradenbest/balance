@@ -1,5 +1,0 @@
-#!/bin/bash
-
-cd build && 
-  sudo make install && 
-  echo "balance tool has successfully been installed"

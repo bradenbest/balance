@@ -1,74 +1,23 @@
-# Balance Tool by Braden Best
+# balance2
 
-This is a tool I wrote for myself after getting fed up with using separate calculators + vim + a textfile that I wrote as some kind of spartan money-tracker
+This is a complete redesign of the [older Balance tool](https://github.com/bradenbest/balance/tree/master).
 
-It has an uninspired name, but uses no libraries other than the standard library (no dependencies, so compilation is easy-peasy), and was written for a **VERY** specific purpose with **VERY** specific data in mind.
+Now that I know what I'm doing in C, it's a hell of a lot more stable. No warnings, no segfaults, valgrind seal of approval.
 
-I seriously doubt you could find a use for this unless you need to keep track of:
+## Compiling
 
-* money you are saving, and keeping in a "bank" in your home
-* money in your wallet
-* coins (Quarters, Dimes, Nickels and Pennies, I personally put half-dollars as 50 pennies)
-* clock-in times you are getting from your job, so as to track what your next paycheck will be
+To compile,
 
-But if you **actually** have a use for this, then have a blast! Source code is pretty short (about 400 lines), so I am pretty sure you would have no problem going in and fine-tuning it to your needs
+    $ cd src && make
 
-## Automatic Installation
+This will compile balance without colors, which will print ugly crap like `[0;37;40mHello[0m` since Windows doesn't understand ANSI escapes.
 
-Download the latest release from the releases tab, extract the archive, and from a terminal, run `./install`.
+...not to imply that this works in Windows. I mean, it probably *does* work, since I only really used `stdio` and `stdlib` but I haven't tested it in Windows. Who knows, the `getenv("HOME")` line could be what derails the whole thing.
 
-After that, simply run `balance`
+To compile with color, edit the makefile and edit the `-DUSE_COLOR` macro.
 
-## Manual Installation
+## Installing
 
-### Configuring
+To install,
 
-To configure, edit `src/config.c`
-
-After making changes, return to the main directory and re-compile to apply changes
-
-```bash
-    $ make install
-```
-
-Note: the FILENAME constant must be absolute. That means no bash shortcuts like `~/some-dir` or `$(SOMEPATH)/some-dir`.
-
-### Compiling
-
-```bash
-    $ make
-```
-
-### Installing (automatically compiles)
-
-```bash
     $ sudo make install
-```
-
-### Uninstalling
-
-```bash
-    $ sudo make uninstall
-```
-
-### Cleaning
-
-```bash
-    $ make clean
-```
-
-### Running
-
-```bash
-    $ balance
-```
-
-## A note about the installer
-
-The installer contains a pre-compiled build with the default settings. It is recommended that you build from source so you can configure it to your liking. 
-
-Basically:
-
-If you want a "RIGHT NOW" solution, then follow the `Automatic instructions`
-
-If you want to be able to configure some things like taxing percentage and minimum wage, then follow the `Manual instructions`
