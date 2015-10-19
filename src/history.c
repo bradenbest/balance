@@ -6,30 +6,23 @@
 #include "history.h"
 
 void history_destroy(edit_node **history){/*{{{*/
-    int i = 0;
+    edit_node **h = history;
 
-    while(history[i]){
-        free(history[i]);
-        i++;
+    while(*h){
+        free(*h);
+        h++;
     }
     free(history);
 }/*}}}*/
 edit_node **history_new(int sz){/*{{{*/
-    edit_node **history = malloc(sizeof(edit_node *) * sz);
-    int i;
-
-    for(i = 0; i < sz; i++){
-        history[i] = 0;
-    }
+    edit_node **history = calloc(sizeof(edit_node *), sz);
     return history;
 }/*}}}*/
 void history_push(edit_node **history, edit_node *node){/*{{{*/
-    int i = 0;
-
-    while(history[i]){
-        i++;
+    while(*history){
+        history++;
     }
-    history[i] = node;
+    *history = node;
 }/*}}}*/
 void history_report(edit_node **history){/*{{{*/
     int i = 0;
@@ -70,7 +63,7 @@ void history_report(edit_node **history){/*{{{*/
     }
 }/*}}}*/
 edit_node *node_new(edit_mode mode, char *fieldname, long_double value, long_double before, long_double after){/*{{{*/
-    edit_node *node = malloc(sizeof(edit_node));
+    edit_node *node = calloc(sizeof(edit_node), 1);
     node->mode = mode;
     node->fieldname = fieldname;
     node->value = value;
