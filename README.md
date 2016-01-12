@@ -1,5 +1,7 @@
 # balance2
 
+## NOTE: I've moved this project. This is no longer being maintained on github. The up-to-date version is [here](https://gitlab.com/bradenbest/balance)
+
 This is a complete redesign of the [older Balance tool](https://github.com/bradenbest/balance/tree/master).
 
 Now that I know what I'm doing in C, it's a hell of a lot more stable. No warnings, no segfaults, valgrind seal of approval.
